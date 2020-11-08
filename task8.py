@@ -1,7 +1,7 @@
 import os
 
 
-#from hadoop import *
+from AWS-hadoop import *
 from LVMautomation import *
 from aws import *
 #from docker import *
@@ -23,7 +23,7 @@ while True:
     option = input("Please enter your choice: ")
     
     if int(option) == 1:
-        hadoop()
+        main()
     elif int(option) == 2:
         aws()
     elif int(option) == 3:
