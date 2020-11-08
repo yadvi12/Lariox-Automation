@@ -1,7 +1,7 @@
-### Lariox
-## A Voice-control Automated system created using Python and shell-scripting
+## Lariox
+### A Voice-control Automated system created using Python and shell-scripting
 
-## It can automate the following tasks:
+### It can automate the following tasks:
 
 - Hadoop
 - AWS
