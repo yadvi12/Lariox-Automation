@@ -1,0 +1,6 @@
+---
+# vars file for mylb
+
+
+package: "haproxy"
+

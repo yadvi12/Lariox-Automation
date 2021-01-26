@@ -1,0 +1,16 @@
+---
+# tasks file for mylb
+
+
+- name: "installation of haproxy software in load-balance"
+  package:
+          name: "{{ package }}"
+          state: present
+- name: "configuring the haproxy config file"
+  template:
+          src: "haproxy.cfg"
+          dest: "/etc/haproxy/haproxy.cfg"
+- name: "starting the haproxy services"
+  service:
+          name: "{{ package }}"
+          state: restarted

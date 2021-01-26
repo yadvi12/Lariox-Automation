@@ -1,0 +1,14 @@
+---
+# tasks file for myweb   
+- name: "installation of httpd"
+  package:
+          name: "{{ package }}"
+          state: present
+- name: "copying the webpages"
+  template:
+          dest: "/var/www/html/index.html"
+          src: "name.html"
+- name: "starting the http service in backend server"
+  service:
+          name: "httpd"
+          state: started

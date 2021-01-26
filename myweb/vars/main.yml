@@ -1,0 +1,7 @@
+---
+# vars file for myweb
+
+package: "httpd"
+destination: "/var/www/html/index.html"
+content: "for load balancer testing"
+file: "index.html"
