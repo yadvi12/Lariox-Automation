@@ -1,11 +1,12 @@
 import os
 
 
-from AWS-hadoop import *
+#from hadoop import *
 from LVMautomation import *
 from aws import *
 #from docker import *
 from apache import *
+from ansible import *
 
 while True:
     os.system("clear")
@@ -15,15 +16,16 @@ while True:
     Press 2 for AWS 
     Press 3 to automate LVM Partitions
     Press 4 to setup docker
-    Press 5 to configure Apache webserver
-    Press 6 to exit     
+    Press 5 to configure Apache webserver in your system
+    Press 6 for ansible configuration
+    Press 7 to exit     
     """)
 
     print()
     option = input("Please enter your choice: ")
     
     if int(option) == 1:
-        main()
+        hadoop()
     elif int(option) == 2:
         aws()
     elif int(option) == 3:
@@ -32,6 +34,8 @@ while True:
         docker()
     elif int(option) == 5:
         apache()
+    elif int(option) == 6:
+        ansible()
     else:
         print("Thank you!")
         exit()

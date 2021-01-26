@@ -1,0 +1,11 @@
+- hosts: myweb
+  vars_prompt: 
+      - name: user_name
+        prompt: "enter your name: "
+        private: no
+  roles: 
+  - role: "myweb"
+  
+- hosts: mylb
+  roles:
+  - role: "mylb"
