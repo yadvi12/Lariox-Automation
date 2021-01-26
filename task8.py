@@ -1,7 +1,7 @@
 import os
 
 
-#from hadoop import *
+from hadoop import *
 from LVMautomation import *
 from aws import *
 #from docker import *
