@@ -7,7 +7,7 @@ import os
 #engine.setProperty('rate', 125)
 
 
-#from hadoop import *
+from hadoop import *
 from LVMautomation import *
 from aws import *
 from docker import *
