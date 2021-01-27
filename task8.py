@@ -9,7 +9,7 @@ import os
 
 from hadoop import *
 from LVMautomation import *
-from aws import *
+#from aws import *
 #from docker import *
 from apache import *
 from ansible import *
