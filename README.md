@@ -1,6 +1,15 @@
 ## Lariox💎
 ### A Voice-control Automated system created using Python and shell-scripting
 
+  <div align="center">  
+    
+  ![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)
+  ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
+  ![forthebadge](https://forthebadge.com/images/badges/uses-brains.svg)
+  
+
+</div>
+
 ### It can automate the following tasks:
 
 - Hadoop
