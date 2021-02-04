@@ -1,7 +1,7 @@
 ## Lariox💎
 ### A Voice-control Automated system created using Python and shell-scripting
 
-  <div align="center">  
+  <div>  
     
   ![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)
   ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
