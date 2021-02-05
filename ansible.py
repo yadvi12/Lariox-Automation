@@ -52,6 +52,7 @@ def ansible():
                       Press 1 to configure load balancer for the web-servers
                       Press 2 to configure yum in your system
                       Press 3 to configure web-server(it will also configure yum repo)
+                      Press 4 to setup K8s Cluster(multi-tencendency)
                       Press 5 to exit
                   """)
             print()
