@@ -1,0 +1,94 @@
+- hosts: localhost
+  vars:
+          ansible_python_interpreter: /usr/bin/python2.7
+  vars_files:
+  
+  tasks:  
+  - name: confguring repo for K8s
+    yum_repository:
+            name: K8s-repo
+            description: repo for K8s
+            baseurl: "https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64"
+            gpgcheck: no
+  - name: " editing in configuration file "
+    lineinfile:
+            path: "/etc/ansible/ansible.cfg"
+            insertafter: "[defaults]"
+            line: "interpreter_python=/usr/bin/python2.7"
+            firstmatch: yes
+            state: present     
+
+  - name: installing docker
+    package:
+            name: "docker"
+            state: present
+
+  - name: "starting the docker service"
+    service: 
+        name: "docker"
+        state: started
+        enabled: yes
+  
+  - name: "installing kubeadm"
+    package:
+         name: "kubeadm"
+         state: present
+  
+  - name: "starting the kubelet service"
+    service: 
+         name: "kubelet"
+         state: started
+         enabled: yes
+  
+  - name: "pulling all the docker images for cluster"
+    command: "kubeadm config images pull"
+  
+  - name: "setting up driver docker cgroup to use systemd instead of cgroupfs"
+    copy:
+         dest: "/etc/docker/daemon.json"
+         content: '{
+                   "exec-opts": ["native.cgroupdriver=systemd"]
+                   }'
+  
+  - name: "restarting docker service"
+    service:
+         name: "docker"
+         state: restarted
+  
+  - name: "installing iproute-tc software for traffic control"
+    package:  
+         name: "iproute-tc"
+         state: present       
+
+  - name: "creating a file"
+    file:
+            path: "/etc/sysctl.d/k8s.conf"
+            state: touch
+            group: "root"
+            owner: "root"
+            mode: 0644  
+    become: yes
+    become_user: root
+    become_method: sudo
+  
+  - name: "network configuration"
+    blockinfile: 
+        path: "/etc/sysctl.d/k8s.conf"
+        block: |
+                net.bridge.bridge-nf-call-ip6tables = 1
+                net.bridge.bridge-nf-call-iptables = 1
+        state: present
+  
+  - name: " Starting sysctl service"
+    command: "sysctl --system"
+    become: yes
+    become_user: root
+    become_method: sudo
+  
+  - name: "Ignoring RAM and CPU errors(system requirements)"
+    shell: "kubeadm init --pod-network-cidr=10.240.0.0/16 --ignore-preflight-errors=NumCPU --ignore-preflight-errors=Mem --ignore-preflight-errors=Swap"
+    environment:
+            KUBECONFIG: "/etc/kubernetes/admin.conf"
+
+  - name: "Running flannel pod "
+    command: "kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml"  
