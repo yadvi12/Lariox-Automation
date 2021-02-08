@@ -51,6 +51,8 @@ def main():
         k = False
       except ValueError:
         print('Enter integer')
+        k=True
+        break;
 
   core = File('core-site.xml')
   f1 = open(core.name,'w')
